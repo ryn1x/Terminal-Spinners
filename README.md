@@ -1,2 +1,2 @@
 # Spinners
-Simple spinners and progress bars for perl6
+Simple spinners and progress bars for Perl 6
