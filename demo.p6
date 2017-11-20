@@ -19,9 +19,9 @@ sub MAIN() {
     say '';
 
     for 1e0 .. 3000e0 {
-        my $perc = $_ * 100e0 / 3000e0;
+        my $percent = $_ * 100e0 / 3000e0;
         print "\b" x 80;
-        progress $perc;
+        progress $percent;
         sleep 0.0001;
     }
 }
