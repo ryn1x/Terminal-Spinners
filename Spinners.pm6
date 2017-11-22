@@ -38,7 +38,7 @@ sub spin() is export {
     }
 }
 
-sub progress(Num $percent is copy) is export {
+sub equals-bar(Num $percent is copy) is export {
     # Takes a floating point number and displays a progress bar for that percent
     $percent = 0e0 if $percent < 0e0;
     $percent = 100e0 if $percent > 100e0;
@@ -48,6 +48,21 @@ sub progress(Num $percent is copy) is export {
     print '[' ~
           '=' x $bar-length ~
           ' ' x $blank-space ~
+          ']' ~
+          $percent-string ~
+          '%';
+}
+
+sub hash-bar(Num $percent is copy) is export {
+    # Takes a floating point number and displays a progress bar for that percent
+    $percent = 0e0 if $percent < 0e0;
+    $percent = 100e0 if $percent > 100e0;
+    my $percent-string = sprintf '%.2f', $percent;
+    my $bar-length = $percent.Int * 71 div 100;
+    my $blank-space = 71 - $bar-length;
+    print '[' ~
+          '#' x $bar-length ~
+          '.' x $blank-space ~
           ']' ~
           $percent-string ~
           '%';

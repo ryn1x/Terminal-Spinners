@@ -21,7 +21,18 @@ sub MAIN() {
     for 1e0 .. 3000e0 {
         my $percent = $_ * 100e0 / 3000e0;
         print "\b" x 80;
-        progress $percent;
-        sleep 0.0001;
+        equals-bar $percent;
+        sleep 0.0002;
     }
+
+    say '';
+
+    for 1e0 .. 3000e0 {
+        my $percent = $_ * 100e0 / 3000e0;
+        print "\b" x 80;
+        hash-bar $percent;
+        sleep 0.0002;
+    }
+
+    say '';
 }
