@@ -4,7 +4,7 @@ use lib '.';
 use Spinners;
 
 multi MAIN() {
-    my $classic = spinner.new: type => 'classic';
+    my $classic = Spinner.new: type => 'classic';
     my $promise = start sleep 2;
     while !$promise.status {
         $classic.next;
@@ -12,7 +12,7 @@ multi MAIN() {
 
     say '';
 
-    my $bounce = spinner.new: type => 'bounce';
+    my $bounce = Spinner.new: type => 'bounce';
     $promise = start sleep 2;
     while !$promise.status {
         $bounce.next;

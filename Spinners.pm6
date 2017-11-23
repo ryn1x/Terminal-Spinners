@@ -2,7 +2,7 @@ use v6.c;
 
 unit module Spinners:ver<0.0.2>:auth<github:ryn1x>;
 
-class spinner is export {
+class Spinner is export {
     has $.type = 'classic';
     has $.speed = 0.08;
     has $!index = 0;
