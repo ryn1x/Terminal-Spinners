@@ -14,6 +14,8 @@ class Spinner is export {
                   bounce => @!bounce;
 
     method next() {
+        # prints the next frame of the spinner animation
+        # prints over the previous frame
         print "\b" x %!types{$.type}[0].chars;
         print %!types{$.type}[$!index];
         sleep $!speed;
@@ -22,8 +24,8 @@ class Spinner is export {
 }
 
 sub equals-bar(Num $percent is copy) is export {
-    # Takes a floating point number and displays a progress bar for that percent
-    # Prints over the previouse progress bar (80 spaces)
+    # takes a floating point number and displays a progress bar for that percent
+    # prints over the previouse progress bar (80 spaces)
     $percent = 0e0 if $percent < 0e0;
     $percent = 100e0 if $percent > 100e0;
     my $percent-string = sprintf '%.2f', $percent;
@@ -39,8 +41,8 @@ sub equals-bar(Num $percent is copy) is export {
 }
 
 sub hash-bar(Num $percent is copy) is export {
-    # Takes a floating point number and displays a progress bar for that percent
-    # Prints over the previouse progress bar (80 spaces)
+    # takes a floating point number and displays a progress bar for that percent
+    # prints over the previouse progress bar (80 spaces)
     $percent = 0e0 if $percent < 0e0;
     $percent = 100e0 if $percent > 100e0;
     my $percent-string = sprintf '%.2f', $percent;
