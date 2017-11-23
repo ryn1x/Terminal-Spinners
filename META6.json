@@ -1,0 +1,11 @@
+{
+  "authors": "Ryan Gooodner (ryn1x)",
+  "description": "Simple spinners and progress bars for Perl 6.",
+  "meta-version": 1,
+  "name": "Terminal::Spinners",
+  "perl": "6.c",
+  "provides": {
+      "Terminal::Spinners": "lib/Terminal/Spinners.pm6"
+    },
+  "version": "0.0.3"
+}
