@@ -5,6 +5,10 @@
   "name": "Terminal::Spinners",
   "perl": "6.c",
   "license": "MIT",
+  "source-url": "https://github.com/ryn1x/Terminal-Spinners.git",
+  "support" : {
+      "source" : "https://github.com/ryn1x/Terminal-Spinners"
+  },
   "tags": [
       "CLI",
       "Terminal"
