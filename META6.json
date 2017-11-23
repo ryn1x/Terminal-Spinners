@@ -4,6 +4,11 @@
   "meta-version": 1,
   "name": "Terminal::Spinners",
   "perl": "6.c",
+  "license": "MIT",
+  "tags": [
+      "CLI",
+      "Terminal"
+  ],
   "provides": {
       "Terminal::Spinners": "lib/Terminal/Spinners.pm6"
     },
