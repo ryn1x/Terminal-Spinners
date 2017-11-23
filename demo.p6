@@ -3,35 +3,37 @@ use v6.c;
 use lib '.';
 use Spinners;
 
-sub MAIN() {
+multi MAIN() {
+    my $classic = spinner.new: type => 'classic';
     my $promise = start sleep 2;
     while !$promise.status {
-        spin;
+        $classic.next;
     }
 
     say '';
 
+    my $bounce = spinner.new: type => 'bounce';
     $promise = start sleep 2;
     while !$promise.status {
-        bounce;
+        $bounce.next;
     }
 
     say '';
 
+    equals-bar 0e0;
     for 1e0 .. 3000e0 {
         my $percent = $_ * 100e0 / 3000e0;
-        print "\b" x 80;
+        sleep 0.0002; # do work here
         equals-bar $percent;
-        sleep 0.0002;
     }
 
     say '';
 
+    hash-bar 0e0;
     for 1e0 .. 3000e0 {
         my $percent = $_ * 100e0 / 3000e0;
-        print "\b" x 80;
+        sleep 0.0002; # do work here
         hash-bar $percent;
-        sleep 0.0002;
     }
 
     say '';

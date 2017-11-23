@@ -1,40 +1,23 @@
 use v6.c;
 
-unit module Spinners:ver<0.0.1>:auth<github:ryn1x>;
+unit module Spinners:ver<0.0.2>:auth<github:ryn1x>;
 
-sub bounce() is export {
-    # one loop of the bounce animation
-    # overwrites itself and does not end with a new line
-    my @bounce = ('[=   ]',
-                  '[==  ]',
-                  '[=== ]',
-                  '[ ===]',
-                  '[  ==]',
-                  '[   =]',
-                  '[    ]',
-                  '[   =]',
-                  '[  ==]',
-                  '[ ===]',
-                  '[====]',
-                  '[=== ]',
-                  '[==  ]',
-                  '[=   ]',
-                  '[    ]');
-    for @bounce {
-        print "\b" x 6;
-        print $_;
-        sleep 0.066;
-    }
-}
+class spinner is export {
+    has $.type = 'classic';
+    has $.speed = 0.08;
+    has $!index = 0;
+    has @!spin = <| / - \\>;
+    has @!bounce = ('[=   ]', '[==  ]', '[=== ]', '[ ===]', '[  ==]',
+                  '[   =]', '[    ]', '[   =]', '[  ==]', '[ ===]',
+                  '[====]', '[=== ]', '[==  ]', '[=   ]', '[    ]');
+    has %!types = classic => @!spin,
+                  bounce => @!bounce;
 
-sub spin() is export {
-    # one loop of the spin animation
-    # overwrites itself and does not end with a new line
-    my @spin = <| / - \\>;
-    for @spin {
-        print "\b";
-        print $_;
-        sleep 0.08;
+    method next() {
+        print "\b" x %!types{$.type}[0].chars;
+        print %!types{$.type}[$!index];
+        sleep $!speed;
+        $!index = ($!index + 1) % %!types{$.type}.elems;
     }
 }
 
@@ -45,6 +28,7 @@ sub equals-bar(Num $percent is copy) is export {
     my $percent-string = sprintf '%.2f', $percent;
     my $bar-length = $percent.Int * 71 div 100;
     my $blank-space = 71 - $bar-length;
+    print "\b" x 80;
     print '[' ~
           '=' x $bar-length ~
           ' ' x $blank-space ~
@@ -60,6 +44,7 @@ sub hash-bar(Num $percent is copy) is export {
     my $percent-string = sprintf '%.2f', $percent;
     my $bar-length = $percent.Int * 71 div 100;
     my $blank-space = 71 - $bar-length;
+    print "\b" x 80;
     print '[' ~
           '#' x $bar-length ~
           '.' x $blank-space ~
