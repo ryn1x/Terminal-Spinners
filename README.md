@@ -7,7 +7,7 @@ Simple spinners and progress bars for Perl 6.
 zef install Terminal::Spinners
 ```
 
-## Usage:
+## Usage
 Classic Spinner ```|/-\```
 ```perl
 my $classic = Spinner.new;
