@@ -1,5 +1,5 @@
 {
-  "authors": "Ryan Gooodner (ryn1x)",
+  "authors": "Ryan Goodner (ryn1x)",
   "description": "Simple spinners and progress bars for Perl 6.",
   "meta-version": 1,
   "name": "Terminal::Spinners",
