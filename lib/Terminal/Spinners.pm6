@@ -6,7 +6,7 @@ class Spinner is export {
     has $.type        = 'classic';
     has $.speed       = 0.08;
     has $!index       = 0;
-    has @!classic        = <| / - \\>;
+    has @!classic     = <| / - \\>;
     has @!bounce      = ('[=   ]', '[==  ]', '[=== ]', '[ ===]', '[  ==]',
                          '[   =]', '[    ]', '[   =]', '[  ==]', '[ ===]',
                          '[====]', '[=== ]', '[==  ]', '[=   ]', '[    ]');
