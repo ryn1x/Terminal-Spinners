@@ -8,7 +8,8 @@ plan 2;
 my $classic = Spinner.new;
 my $hash-bar = Bar.new;
 
-my class OutputCapture { # M. Lenz, Perl 6 Fundamentals
+my class OutputCapture {
+    # credit M. Lenz, Perl 6 Fundamentals
     has @!lines;
     method print(\s) {
         @!lines.push(s);
@@ -46,7 +47,7 @@ my $bar100-string = '[' ~
 
 is $spinner-output, "\b|\b/", 'Spinner next works';
 is $bar-output, "\b" x 80 ~
-                $bar0-string ~ 
+                $bar0-string ~
                 "\b" x 80 ~
                 $bar100-string,
     'Bar show works';
