@@ -18,13 +18,16 @@ until $promise.status {
 
 Hash Progress Bar ```[##########..........]50.00%```
 ```perl
-my $hash-bar = Bar.new;                # defaults to the hash progress bar
-$hash-bar.show: 0e0;                   # print a 0% progress bar
-for 1e0 .. 3000e0 {
-    my $percent = $_ * 100e0 / 3000e0; # calculate a floating point percentage
-    sleep 0.0002;                      # do iterative work here
-    $hash-bar.show: $percent;          # print the progress bar and percent
+my $hash-bar = Bar.new;            # defaults to the hash progress bar
+$hash-bar.show: 0;                 # print a 0% progress bar
+for 1 .. 3000 {
+    my $percent = $_ / 3000 * 100; # calculate a percentage
+    sleep 0.0002;                  # do iterative work here
+    $hash-bar.show: $percent;      # print the progress bar and percent
 }
 ```
+## Copyright
+Copyright (c) 2018, github:ryn1x
+
 ## License
-Terminal::Spinners is released under the MIT License.
+Terminal::Spinners is released under the Artistic License 2.0.

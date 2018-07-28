@@ -48,14 +48,14 @@ for ^10 {
 my $hash-output = do {
     my $*OUT = OutputCapture.new;
     my $hash-bar = Bar.new: type => 'hash';
-    $hash-bar.show: 100e0;
+    $hash-bar.show: 100;
     $*OUT.captured;
 }
 
 my $equals-output = do {
     my $*OUT = OutputCapture.new;
-    my $equals-bar = Bar.new: type => 'hash';
-    $equals-bar.show: 100e0;
+    my $equals-bar = Bar.new: type => 'equals';
+    $equals-bar.show: 100;
     $*OUT.captured;
 }
 
