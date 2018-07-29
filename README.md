@@ -26,6 +26,46 @@ for 1 .. 3000 {
     $hash-bar.show: $percent;      # print the progress bar and percent
 }
 ```
+
+## More options
+For spinners you can set the speed:
+```perl
+my $spinner = Spinner.new: speed => 0; # speed in seconds
+# defaults to 0.08. this provides smooth animation for use as in the example above.
+# 0 seconds can be useful if you want to print the next frame each time an action occurs.
+``` 
+And change the type of spinner:
+```perl
+my $spinner = Spinner.new: type => 'bounce';
+```
+Choose from these types:
+<pre>
+classic     | / - \
+bounce      [=   ] [==  ] [=== ] [ ===] [  ==] [   =] [    ] [   =] [  ==] [ ===] [====] [=== ] [==  ] [=   ] [    ]
+bounce2     ( ●    ) (  ●   ) (   ●  ) (    ● ) (     ●) (    ● ) (   ●  ) (  ●   ) ( ●    ) (●     )
+dots        ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏
+dots2       ⢄ ⢂ ⢁ ⡁ ⡈ ⡐ ⡠
+dots3       ⠈ ⠐ ⠠ ⢀ ⡀ ⠄ ⠂ ⠁
+three-dots  .  .. ...
+three-dots2 .  .. ... ..  .
+bar         ▁  ▃  ▄  ▅  ▆  ▇  ▆  ▅  ▄  ▃  ▁
+bar2        ▏  ▎  ▍  ▌  ▊  ▉  ▊  ▋  ▌  ▍  ▎
+</pre>
+
+For bars you can change the length:
+```perl
+my $bar = Bar.new: length => 50;
+```
+And you can change the type:
+```perl
+my $bar = Bar.new: type => 'equals';
+```
+Choose from these types:
+<pre>
+hash   [##########..........]50.00%
+equals [==========          ]50.00%
+</pre>
+
 ## Copyright
 Copyright (c) 2018, github:ryn1x
 

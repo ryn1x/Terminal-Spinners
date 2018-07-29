@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.0.0>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.0.1>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -50,7 +50,7 @@ class Bar is export {
                   equals => @!equals;
 
     method show($percent is copy) {
-        # takes a floating point number and shows a progress bar for that percent
+        # takes a Rat, Num, Int, Str... and shows a progress bar for that percent
         # prints over the previous progress bar
         $percent = 0 if $percent < 0;
         $percent = 100 if $percent > 100;
