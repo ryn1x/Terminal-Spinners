@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.0.1>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.0.2>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -57,11 +57,13 @@ class Bar is export {
         my $percent-string = sprintf '%.2f', $percent;
         my $bar-length = $percent.Int * ($!length - 9) div 100;
         my $blank-space = ($!length - 9) - $bar-length;
+        my $pad = '100.00'.chars - $percent-string.chars;
         print "\b" x $.length;
         print %!types{$!type}[0] ~
               %!types{$!type}[1] x $bar-length ~
               %!types{$!type}[2] x $blank-space ~
               %!types{$!type}[3] ~
+              ' ' x $pad ~
               $percent-string ~
               '%';
     }
