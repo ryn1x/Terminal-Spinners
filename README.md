@@ -9,7 +9,13 @@ zef install Terminal::Spinners
 ## Usage
 Classic Spinner ```|/-\```
 ```perl
-my $classic = Spinner.new;   # defaults to the classic spinner
+my $spinner = Spinner.new;                        # a new default (classic) spinner 
+my $promise = Promise.start: { sleep 2; 40 + 2 }; # promise of your long running process  
+my $result  = $spinner.await: $promise;           # await returns the promise result
+```
+-or-
+```perl
+my $classic = Spinner.new;   # a new default (classic) spinner 
 my $promise = start sleep 2; # promise of your long running process
 until $promise.status {
     $classic.next;           # prints the next spinner frame

@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.0.2>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.1.0>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -38,6 +38,16 @@ class Spinner is export {
         print %!types{$.type}[$!index];
         sleep $!speed;
         $!index = ($!index + 1) % %!types{$.type}.elems;
+    }
+
+    method await(Promise $promise) {
+        # awaits for a promise to return with a spinner animation
+        # returns the result of the promise
+        until $promise.status {
+            self.next;
+        }
+        say '';
+        return $promise.result;
     }
 }
 
