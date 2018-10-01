@@ -72,8 +72,10 @@ hash   [##########..........]50.00%
 equals [==========          ]50.00%
 </pre>
 
+And for spinners and bars you can use the ```:no-overwrite``` or ```:now``` adverbs to suppress overwriting the previous bar/spinner. These adverbs work with the next(), await(), and show() methods.
+
 ## Copyright
-Copyright (c) 2018, github:ryn1x
+Copyright (c) 2018, ryn1x
 
 ## License
 Terminal::Spinners is released under the Artistic License 2.0.
