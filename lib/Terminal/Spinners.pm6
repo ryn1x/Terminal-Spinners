@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.1.0>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.2.0>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -31,20 +31,20 @@ class Spinner is export {
                         bar         => @!bar,
                         bar2        => @!bar2;
 
-    method next() {
+    method next(Bool :no-overwrite(:$now) = False) {
         # prints the next frame of the spinner animation
         # prints over the previous frame
-        print "\b" x %!types{$.type}[0].chars;
+        print "\b" x %!types{$.type}[0].chars unless $now;
         print %!types{$.type}[$!index];
         sleep $!speed;
         $!index = ($!index + 1) % %!types{$.type}.elems;
     }
 
-    method await(Promise $promise) {
+    method await(Promise $promise, Bool :no-overwrite(:$now) = False) {
         # awaits for a promise to return with a spinner animation
         # returns the result of the promise
         until $promise.status {
-            self.next;
+            self.next: :now($now);
         }
         say '';
         return $promise.result;
@@ -59,7 +59,7 @@ class Bar is export {
     has %!types = hash => @!hash,
                   equals => @!equals;
 
-    method show($percent is copy) {
+    method show($percent is copy, Bool :no-overwrite(:$now) = False) {
         # takes a Rat, Num, Int, Str... and shows a progress bar for that percent
         # prints over the previous progress bar
         $percent = 0 if $percent < 0;
@@ -68,7 +68,7 @@ class Bar is export {
         my $bar-length = $percent.Int * ($!length - 9) div 100;
         my $blank-space = ($!length - 9) - $bar-length;
         my $pad = '100.00'.chars - $percent-string.chars;
-        print "\b" x $.length;
+        print "\b" x $.length unless $now;
         print %!types{$!type}[0] ~
               %!types{$!type}[1] x $bar-length ~
               %!types{$!type}[2] x $blank-space ~

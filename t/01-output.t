@@ -23,6 +23,7 @@ my $spinner-output = do {
     my $*OUT = OutputCapture.new;
     $classic.next;
     $classic.next;
+    $classic.next :now;
     $*OUT.captured;
 }
 
@@ -39,6 +40,7 @@ my $bar-output = do {
     $hash-bar.show: 100.Rat;
     $hash-bar.show: 100.Num;
     $hash-bar.show: 100.Int;
+    $hash-bar.show: 100, :now;
     $*OUT.captured;
 }
 
@@ -69,7 +71,7 @@ my $bar100-string = '[' ~
                     ']' ~
                     '100.00%';
 
-is $spinner-output, "\b|\b/", 'Spinner next works';
+is $spinner-output, "\b|\b/-", 'Spinner next works';
 is $bar-output, "\b" x 80 ~
                 $bar0-string ~
                 "\b" x 80 ~
@@ -91,5 +93,6 @@ is $bar-output, "\b" x 80 ~
                 "\b" x 80 ~
                 $bar100-string ~
                 "\b" x 80 ~
+                $bar100-string ~
                 $bar100-string,
     'Bar show works';
