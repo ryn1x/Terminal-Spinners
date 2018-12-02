@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.2.0>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.3.0>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -31,18 +31,29 @@ class Spinner is export {
                         bar         => @!bar,
                         bar2        => @!bar2;
 
-    method next(Bool :no-overwrite(:$now) = False) {
+    method next(Bool :no-overwrite(:$now) = False, Bool :no-print(:$nop) = False) {
+        # returns a string of the next spinner frame
         # prints the next frame of the spinner animation
         # prints over the previous frame
-        print "\b" x %!types{$.type}[0].chars unless $now;
-        print %!types{$.type}[$!index];
-        sleep $!speed;
+        # :now stops from printing over the previous frame
+        # :nop stops from printing to the screen
+
+        my $frame;
+        $frame ~= "\b" x %!types{$.type}[0].chars unless $now;
+        $frame ~= %!types{$.type}[$!index];
+        unless $nop {
+            print $frame;
+            sleep $!speed;
+        }
         $!index = ($!index + 1) % %!types{$.type}.elems;
+        return $frame;
     }
 
     method await(Promise $promise, Bool :no-overwrite(:$now) = False) {
         # awaits for a promise to return with a spinner animation
         # returns the result of the promise
+        # :now stops from printing over the previous frame
+
         until $promise.status {
             self.next: :now($now);
         }
@@ -59,22 +70,28 @@ class Bar is export {
     has %!types = hash => @!hash,
                   equals => @!equals;
 
-    method show($percent is copy, Bool :no-overwrite(:$now) = False) {
+    method show($percent is copy, Bool :no-overwrite(:$now) = False, Bool :no-print(:$nop) = False) {
         # takes a Rat, Num, Int, Str... and shows a progress bar for that percent
         # prints over the previous progress bar
+        # :now stops from printing over the previous frame
+        # :nop stops from printing to the screen
+
         $percent = 0 if $percent < 0;
         $percent = 100 if $percent > 100;
         my $percent-string = sprintf '%.2f', $percent;
         my $bar-length = $percent.Int * ($!length - 9) div 100;
         my $blank-space = ($!length - 9) - $bar-length;
         my $pad = '100.00'.chars - $percent-string.chars;
-        print "\b" x $.length unless $now;
-        print %!types{$!type}[0] ~
-              %!types{$!type}[1] x $bar-length ~
-              %!types{$!type}[2] x $blank-space ~
-              %!types{$!type}[3] ~
-              ' ' x $pad ~
-              $percent-string ~
-              '%';
+        my $bar;
+        $bar ~= "\b" x $.length unless $now;
+        $bar ~= %!types{$!type}[0] ~
+                %!types{$!type}[1] x $bar-length ~
+                %!types{$!type}[2] x $blank-space ~
+                %!types{$!type}[3] ~
+                ' ' x $pad ~
+                $percent-string ~
+                '%';
+        print $bar unless $nop;
+        return $bar;
     }
 }

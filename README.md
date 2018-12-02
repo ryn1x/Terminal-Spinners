@@ -72,7 +72,15 @@ hash   [##########..........]50.00%
 equals [==========          ]50.00%
 </pre>
 
-And for spinners and bars you can use the ```:no-overwrite``` or ```:now``` adverbs to suppress overwriting the previous bar/spinner. These adverbs work with the next(), await(), and show() methods.
+## Adverbs
+
+```:no-overwrite``` or ```:now```:
+
+Suppresses overwriting the previous bar/spinner. Works with ```next()```, ```await()```, and ```show()``` methods. Particularly useful on Windows where the formatting is not as expected when printing in combination with other text.
+
+```:no-print``` or ```:nop```:
+
+Suppresses printing and also skips any animation delays. Works with the ```next()``` and ```show()``` methods, which also return the spinner-frame or progress-bar, respectively, as a string.
 
 ## Copyright
 Copyright (c) 2018, ryn1x

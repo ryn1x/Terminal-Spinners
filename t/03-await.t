@@ -7,6 +7,12 @@ plan 1;
 
 my $spinner = Spinner.new;
 my $promise = Promise.start: {40 + 2};
-my $result = $spinner.await: $promise;
+
+# capture the output so it doesn't print during testing
+my $result = do {
+    my $*OUT = class { method print(Str $s) {} }.new;
+    $spinner.await: $promise;
+}
 
 is $result, 42, 'Spinner await returns the right result';
+
