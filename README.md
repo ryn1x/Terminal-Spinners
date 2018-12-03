@@ -76,7 +76,7 @@ equals [==========          ]50.00%
 
 ```:no-overwrite``` or ```:now```:
 
-Suppresses overwriting the previous bar/spinner. Works with ```next()```, ```await()```, and ```show()``` methods. Particularly useful on Windows where the formatting is not as expected when printing in combination with other text.
+Suppresses overwriting the previous spinner/bar. Works with ```next()```, ```await()```, and ```show()``` methods. Particularly useful on Windows where the formatting is not as expected when printing in combination with other text.
 
 ```:no-print``` or ```:nop```:
 
