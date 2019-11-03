@@ -22,7 +22,7 @@ until $promise.status {
 }
 ```
 
-Hash Progress Bar ```[##########..........]50.00%```
+Hash Progress Bar ```[##########..........] 50.00%```
 ```perl
 my $hash-bar = Bar.new;            # defaults to the hash progress bar
 $hash-bar.show: 0;                 # print a 0% progress bar
@@ -68,9 +68,9 @@ my $bar = Bar.new: type => 'equals';
 ```
 Choose from these types:
 <pre>
-hash   [##########.........] 50.00%
-equals [==========         ] 50.00%
-bar    ██████████░░░░░░░░░░░ 50.00%
+hash   [##########..........] 50.00%
+equals [==========          ] 50.00%
+bar    ███████████░░░░░░░░░░░ 50.00%
 </pre>
 
 ## Adverbs
