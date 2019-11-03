@@ -68,8 +68,8 @@ my $bar = Bar.new: type => 'equals';
 ```
 Choose from these types:
 <pre>
-hash   [##########..........]50.00%
-equals [==========          ]50.00%
+hash   [##########.........] 50.00%
+equals [==========         ] 50.00%
 bar    ██████████░░░░░░░░░░░ 50.00%
 </pre>
 
