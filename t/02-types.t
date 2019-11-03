@@ -3,7 +3,7 @@ use v6.c;
 use Test;
 use Terminal::Spinners;
 
-plan 12;
+plan 13;
 
 my @classic     = <| / - \\>;
 my @bounce      = ('[=   ]', '[==  ]', '[=== ]', '[ ===]', '[  ==]',
@@ -59,5 +59,13 @@ my $equals-output = do {
     $*OUT.captured;
 }
 
+my $bar-output = do {
+    my $*OUT = OutputCapture.new;
+    my $bar-bar = Bar.new: type => 'bar';
+    $bar-bar.show: 100;
+    $*OUT.captured;
+}
+
 is $hash-output.chars, 160, 'hash';
 is $equals-output.chars, 160, 'equals';
+is $bar-output.chars, 160, 'bar';

@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.3.0>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.4.0>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -67,8 +67,10 @@ class Bar is export {
     has $.length = 80;
     has @!hash = <[ # . ]>;
     has @!equals = <<[ = ' ' ]>>;
+    has @!bar = <<'' █ ░ ''>>;
     has %!types = hash => @!hash,
-                  equals => @!equals;
+                  equals => @!equals,
+                  bar => @!bar;
 
     method show($percent is copy, Bool :no-overwrite(:$now) = False, Bool :no-print(:$nop) = False) {
         # takes a Rat, Num, Int, Str... and shows a progress bar for that percent
@@ -79,8 +81,9 @@ class Bar is export {
         $percent = 0 if $percent < 0;
         $percent = 100 if $percent > 100;
         my $percent-string = sprintf '%.2f', $percent;
-        my $bar-length = $percent.Int * ($!length - 9) div 100;
-        my $blank-space = ($!length - 9) - $bar-length;
+        my $num-end-chars = (%!types{$!type}[0] ~ %!types{$!type}[0]).chars;
+        my $bar-length = $percent.Int * ($!length - 7 - $num-end-chars) div 100;
+        my $blank-space = ($!length - 7 - $num-end-chars) - $bar-length;
         my $pad = '100.00'.chars - $percent-string.chars;
         my $bar;
         $bar ~= "\b" x $.length unless $now;

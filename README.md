@@ -9,13 +9,13 @@ zef install Terminal::Spinners
 ## Usage
 Classic Spinner ```|/-\```
 ```perl
-my $spinner = Spinner.new;                        # a new default (classic) spinner 
-my $promise = Promise.start: { sleep 2; 40 + 2 }; # promise of your long running process  
+my $spinner = Spinner.new;                        # a new default (classic) spinner
+my $promise = Promise.start: { sleep 2; 40 + 2 }; # promise of your long running process
 my $result  = $spinner.await: $promise;           # await returns the promise result
 ```
 -or-
 ```perl
-my $classic = Spinner.new;   # a new default (classic) spinner 
+my $classic = Spinner.new;   # a new default (classic) spinner
 my $promise = start sleep 2; # promise of your long running process
 until $promise.status {
     $classic.next;           # prints the next spinner frame
@@ -39,7 +39,7 @@ For spinners you can set the speed:
 my $spinner = Spinner.new: speed => 0; # speed in seconds
 # defaults to 0.08. this provides smooth animation for use as in the example above.
 # 0 seconds can be useful if you want to print the next frame each time an action occurs.
-``` 
+```
 And change the type of spinner:
 ```perl
 my $spinner = Spinner.new: type => 'bounce';
@@ -70,6 +70,7 @@ Choose from these types:
 <pre>
 hash   [##########..........]50.00%
 equals [==========          ]50.00%
+bar    ██████████░░░░░░░░░░░ 50.00%
 </pre>
 
 ## Adverbs

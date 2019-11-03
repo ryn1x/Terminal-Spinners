@@ -93,8 +93,18 @@ sub MAIN() {
 
     say '';
 
-    my $equals-bar = Bar.new: type => 'equals',
-                              length => 50; # choose the equals type with custom length
+    my $bar-bar = Bar.new: type => 'bar'; # select the bar type
+    $bar-bar.show: 0; # print a 0% progress bar
+    for 1 .. 3000 {
+        my $percent = $_ / 3000 * 100; # calculate a percentage
+        sleep 0.0002; # do iterative work here
+        $bar-bar.show: $percent; # print the progress bar and percent
+    }
+
+    say '';
+
+    my $equals-bar = Bar.new: type => 'equals', # select the equals type
+                              length => 50; # choose a custom length
     $equals-bar.show: 0; # print a 0% progress bar
     for 1 .. 3000 {
         my $percent = $_ / 3000 * 100; # calculate a percentage
