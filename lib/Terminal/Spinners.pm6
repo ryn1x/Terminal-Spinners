@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module Terminal::Spinners:ver<1.4.0>:auth<github:ryn1x>;
+unit module Terminal::Spinners:ver<1.5.0>:auth<github:ryn1x>;
 
 class Spinner is export {
     has $.type        = 'classic';
@@ -66,9 +66,11 @@ class Bar is export {
     has $.type = 'hash';
     has $.length = 80;
     has @!hash = <[ # . ]>;
+    has @!hash-dash = <[ # - ]>;
     has @!equals = <<[ = ' ' ]>>;
     has @!bar = <<'' █ ░ ''>>;
     has %!types = hash => @!hash,
+                  hash-dash => @!hash-dash,
                   equals => @!equals,
                   bar => @!bar;
 

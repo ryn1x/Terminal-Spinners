@@ -93,6 +93,16 @@ sub MAIN() {
 
     say '';
 
+    my $hash-dash-bar = Bar.new: type => 'hash-dash'; # select the hash-dash type
+    $hash-dash-bar.show: 0; # print a 0% progress bar
+    for 1 .. 3000 {
+        my $percent = $_ / 3000 * 100; # calculate a percentage
+        sleep 0.0002; # do iterative work here
+        $hash-dash-bar.show: $percent; # print the progress bar and percent
+    }
+
+    say '';
+
     my $bar-bar = Bar.new: type => 'bar'; # select the bar type
     $bar-bar.show: 0; # print a 0% progress bar
     for 1 .. 3000 {
