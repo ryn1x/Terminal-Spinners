@@ -28,7 +28,7 @@ my $result = do {
 
 is $result, 42, 'Spinner await returns the right result';
 
-# -- $now --
+# -- no-final-newline --
 
 my $outputWithN = do {
     my $*OUT = OutputCapture.new;
@@ -44,5 +44,4 @@ my $outputWithoutN = do {
     $spinner.await: $promise, :no-final-newline;
     $*OUT.captured;
 };
-say $outputWithoutN;
 unlike $outputWithoutN, /\n/, "Should not have a final newline with :no-final-newline";
