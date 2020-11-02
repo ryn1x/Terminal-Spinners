@@ -84,8 +84,12 @@ Suppresses overwriting the previous spinner/bar. Works with ```next()```, ```awa
 
 Suppresses printing and also skips any animation delays. Works with the ```next()``` and ```show()``` methods, which also return the spinner-frame or progress-bar, respectively, as a string.
 
+```:no-final-newline``` or ```:non```:
+
+By default, ```await()``` will print a newline when it's done waiting for the promise. This suppresses that newline. Only works with the ```await()``` method.
+
 ## Copyright
-Copyright (c) 2018, ryn1x
+Copyright (c) 2018-2020, ryn1x
 
 ## License
 Terminal::Spinners is released under the Artistic License 2.0.
