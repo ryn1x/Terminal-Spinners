@@ -49,7 +49,7 @@ class Spinner is export {
         return $frame;
     }
 
-    method await(Promise $promise, Bool :no-overwrite(:$now) = False) {
+    method await(Promise $promise, Bool :no-overwrite(:$now) = False, Bool :no-final-newline(:$non) = False) {
         # awaits for a promise to return with a spinner animation
         # returns the result of the promise
         # :now stops from printing over the previous frame
@@ -57,7 +57,10 @@ class Spinner is export {
         until $promise.status {
             self.next: :now($now);
         }
-        say '';
+        if !$non
+        {
+            say '';
+        }
         return $promise.result;
     }
 }
