@@ -1,6 +1,6 @@
 {
   "auth": "github:ryn1x",
-  "description": "Simple spinners and progress bars for Perl 6.",
+  "description": "Simple spinners and progress bars for Raku.",
   "meta-version": 1,
   "name": "Terminal::Spinners",
   "perl": "6.c",

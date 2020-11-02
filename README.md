@@ -1,5 +1,5 @@
 # Terminal::Spinners
-Simple spinners and progress bars for Perl 6.
+Simple spinners and progress bars for Raku.
 
 ## Install
 ```bash
@@ -8,13 +8,13 @@ zef install Terminal::Spinners
 
 ## Usage
 Classic Spinner ```|/-\```
-```perl
+```raku
 my $spinner = Spinner.new;                        # a new default (classic) spinner
 my $promise = Promise.start: { sleep 2; 40 + 2 }; # promise of your long running process
 my $result  = $spinner.await: $promise;           # await returns the promise result
 ```
 -or-
-```perl
+```raku
 my $classic = Spinner.new;   # a new default (classic) spinner
 my $promise = start sleep 2; # promise of your long running process
 until $promise.status {
@@ -23,7 +23,7 @@ until $promise.status {
 ```
 
 Hash Progress Bar ```[##########..........] 50.00%```
-```perl
+```raku
 my $hash-bar = Bar.new;            # defaults to the hash progress bar
 $hash-bar.show: 0;                 # print a 0% progress bar
 for 1 .. 3000 {
@@ -35,13 +35,13 @@ for 1 .. 3000 {
 
 ## More options
 For spinners you can set the speed:
-```perl
+```raku
 my $spinner = Spinner.new: speed => 0; # speed in seconds
 # defaults to 0.08. this provides smooth animation for use as in the example above.
 # 0 seconds can be useful if you want to print the next frame each time an action occurs.
 ```
 And change the type of spinner:
-```perl
+```raku
 my $spinner = Spinner.new: type => 'bounce';
 ```
 Choose from these types:
@@ -59,11 +59,11 @@ bar2        ▏  ▎  ▍  ▌  ▊  ▉  ▊  ▋  ▌  ▍  ▎
 </pre>
 
 For bars you can change the length:
-```perl
+```raku
 my $bar = Bar.new: length => 50;
 ```
 And you can change the type:
-```perl
+```raku
 my $bar = Bar.new: type => 'equals';
 ```
 Choose from these types:
